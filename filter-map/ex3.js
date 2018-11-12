@@ -51,6 +51,37 @@ Sortie attendue:
 */
 
 function getStudentsPerCurriculum(campuses, curriculumName) {
+  // let campusTri = [];
+  // let students = [];
+  // for (let i = 0; i < campuses.length; i++) {
+  //   for (let j = 0; j < campuses[i].curriculums.length; j++) {
+  //     if (campuses[i].curriculums[j].name == curriculumName) {
+  //       campusTri.push(campuses[i]);
+  //       students.push(campuses[i].curriculums[j].numStudents);
+  //     }
+  //   }
+  // }
+  // return students.map((student, i) => {
+  //   return {[campusTri[i].city]: students[i]};
+  // });
+  let tabInter = [];
+  let students = [];
+  for (let i = 0; i < campuses.length; i++) {
+    tabInter.push(campuses[i].curriculums.filter(curri => {
+      if (curri.name == curriculumName) {
+        return curri;
+      }
+    }));
+    students.push(campuses[i].curriculums.filter(curri => {
+      if (curri.name == curriculumName) {
+        return curri;
+      }
+    }).name);
+
+  }
+  return tabInter.map((campus, i) => {
+    return {[tabInter[i].city]: students[i]}
+  } )
 }
 
 module.exports = getStudentsPerCurriculum;
